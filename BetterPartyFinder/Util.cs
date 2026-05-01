@@ -16,9 +16,9 @@ public static class Util
     public static string UpperCaseStr(this ReadOnlySeString s, sbyte article = 0)
     {
         if (article == 1)
-            return s.ExtractText();
+            return s.ToString();
 
-        var sb = new StringBuilder(s.ExtractText());
+        var sb = new StringBuilder(s.ToString());
         var lastSpace = true;
         for (var i = 0; i < sb.Length; ++i)
         {
@@ -44,7 +44,7 @@ public static class Util
     internal static IEnumerable<World> WorldsOnDataCentre(IPlayerCharacter character)
     {
         var dcRow = character.HomeWorld.Value.DataCenter.Value.Region;
-        return Sheets.WorldSheet.Where(world => world.IsPublic && world.DataCenter.Value.Region == dcRow);
+        return Sheets.WorldSheet.Where(world => world.IsPublic && world.DataCenter.Value.Region.RowId == dcRow.RowId);
     }
 
     /// <summary> Iterate over enumerables with additional index. </summary>

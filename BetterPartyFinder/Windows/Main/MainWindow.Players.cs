@@ -16,33 +16,33 @@ public partial class MainWindow
         if (player == null)
             return;
 
-        ImGui.PushItemWidth(ImGui.GetWindowWidth() / 3f);
-        ImGui.InputText("###player-name", ref PlayerName, 64);
+        var worlds = Util.WorldsOnDataCentre(player).OrderByDescending(world => world.DataCenter.RowId).ThenBy(world => world.Name.ToString()).ToList();
 
-        ImGui.SameLine();
-
-        var worlds = Util.WorldsOnDataCentre(player).OrderByDescending(world => world.DataCenter.RowId).ThenBy(world => world.Name.ExtractText()).ToList();
-
-        using (var combo = ImRaii.Combo("###player-world", worlds[SelectedWorld].Name.ExtractText()))
+        using (ImRaii.ItemWidth(ImGui.GetWindowWidth() / 3f))
         {
-            if (combo.Success)
-            {
-                var lastDc = worlds.First().DataCenter.RowId;
-                foreach (var (world, idx) in worlds.WithIndex())
-                {
-                    if (ImGui.Selectable(world.Name.ExtractText(), SelectedWorld == idx))
-                        SelectedWorld = idx;
+            ImGui.InputText("###player-name", ref PlayerName, 64);
 
-                    if (lastDc != world.DataCenter.RowId)
+            ImGui.SameLine();
+
+            using (var combo = ImRaii.Combo("###player-world", worlds[SelectedWorld].Name.ToString()))
+            {
+                if (combo.Success)
+                {
+                    var lastDc = worlds.First().DataCenter.RowId;
+                    foreach (var (world, idx) in worlds.WithIndex())
                     {
-                        lastDc = world.DataCenter.RowId;
-                        ImGui.Separator();
+                        if (ImGui.Selectable(world.Name.ToString(), SelectedWorld == idx))
+                            SelectedWorld = idx;
+
+                        if (lastDc != world.DataCenter.RowId)
+                        {
+                            lastDc = world.DataCenter.RowId;
+                            ImGui.Separator();
+                        }
                     }
                 }
             }
         }
-
-        ImGui.PopItemWidth();
 
         ImGui.SameLine();
 
