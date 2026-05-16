@@ -1,14 +1,13 @@
 ﻿using System;
-using System.Runtime.InteropServices;
 using Dalamud.Utility.Signatures;
 using FFXIVClientStructs.FFXIV.Client.UI.Agent;
 
 namespace BetterPartyFinder;
 
-// Code taken from: https://git.anna.lgbt/anna/XivCommon/src/branch/main/XivCommon/Functions/PartyFinder.cs
+
 public unsafe class HookManager
 {
-    [Signature("48 89 5C 24 ?? 48 89 74 24 ?? 57 48 83 EC 40 0F 10 81")]
+    [Signature("48 89 5C 24 ?? 48 89 74 24 ?? 57 48 83 EC ?? 0F 10 81 ?? ?? ?? ?? 8B 99")]
     private readonly delegate* unmanaged<AgentLookingForGroup*, byte, byte> RequestPartyFinderListings = null!;
 
     public HookManager()

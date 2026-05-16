@@ -43,11 +43,11 @@ public class ConfigurationFilter
     // default to true because that's the PF's default
     // use nosol if trying to avoid spam
 
-    public SearchAreaFlags SearchArea { get; set; } = (SearchAreaFlags) ~(uint) 0;
-    public LootRuleFlags LootRule { get; set; } = ~LootRuleFlags.None;
-    public DutyFinderSettingsFlags DutyFinderSettings { get; set; } = ~DutyFinderSettingsFlags.None;
-    public ConditionFlags Conditions { get; set; } = (ConditionFlags) ~(uint) 0;
-    public ObjectiveFlags Objectives { get; set; } = ~ObjectiveFlags.None;
+    public SearchAreaFlags SearchArea { get; set; } = 0;
+    public MirroredLootRuleFlags LootRule { get; set; } = ~MirroredLootRuleFlags.Normal;
+    public DutyFinderSettingsFlags DutyFinderSettings { get; set; } = DutyFinderSettingsFlags.None;
+    public ConditionFlags Conditions { get; set; } = 0;
+    public MirroredObjectiveFlags Objectives { get; set; } = MirroredObjectiveFlags.None;
 
     public bool AllowHugeItemLevel { get; set; } = true;
     public uint? MinItemLevel { get; set; }
@@ -69,7 +69,7 @@ public class ConfigurationFilter
         }
     }
 
-    internal bool this[LootRuleFlags flags]
+    internal bool this[MirroredLootRuleFlags flags]
     {
         get => (LootRule & flags) > 0;
         set
@@ -105,7 +105,7 @@ public class ConfigurationFilter
         }
     }
 
-    internal bool this[ObjectiveFlags flags]
+    internal bool this[MirroredObjectiveFlags flags]
     {
         get => (Objectives & flags) > 0;
         set

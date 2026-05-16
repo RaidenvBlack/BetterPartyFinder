@@ -28,31 +28,32 @@ public partial class MainWindow
         Helper.TextColored(ImGuiColors.ParsedOrange, "Hide:");
         ImGui.Separator();
 
-        filter[ObjectiveFlags.Practice] = DrawRestrictionEntry("Practice", filter[ObjectiveFlags.Practice]);
-        filter[ObjectiveFlags.DutyCompletion] = DrawRestrictionEntry("Duty Completion", filter[ObjectiveFlags.DutyCompletion]);
-        filter[ObjectiveFlags.Loot] = DrawRestrictionEntry("Loot", filter[ObjectiveFlags.Loot]);
+        filter[MirroredObjectiveFlags.None] = DrawRestrictionEntry("No Objective Set", filter[MirroredObjectiveFlags.None]);
+        filter[MirroredObjectiveFlags.Practice] = DrawRestrictionEntry("Practice", filter[MirroredObjectiveFlags.Practice]);
+        filter[MirroredObjectiveFlags.DutyCompletion] = DrawRestrictionEntry("Duty Completion", filter[MirroredObjectiveFlags.DutyCompletion]);
+        filter[MirroredObjectiveFlags.Loot] = DrawRestrictionEntry("Loot", filter[MirroredObjectiveFlags.Loot]);
 
         DrawSeparator();
 
         filter[ConditionFlags.None] = DrawRestrictionEntry("No Completion Requirement", filter[ConditionFlags.None]);
         filter[ConditionFlags.DutyIncomplete] = DrawRestrictionEntry("Duty Incomplete", filter[ConditionFlags.DutyIncomplete]);
         filter[ConditionFlags.DutyComplete] = DrawRestrictionEntry("Duty Complete", filter[ConditionFlags.DutyComplete]);
-        filter[ConditionFlags.DutyCompleteWeeklyRewardUnclaimed] = DrawRestrictionEntry("Weekly Reward Unclaimed", filter[ConditionFlags.DutyCompleteWeeklyRewardUnclaimed]);
+        filter[ConditionFlags.DutyCompleteWeeklyUnclaimed] = DrawRestrictionEntry("Weekly Reward Unclaimed", filter[ConditionFlags.DutyCompleteWeeklyUnclaimed]);
 
         DrawSeparator();
 
-        filter[DutyFinderSettingsFlags.UndersizedParty] = DrawRestrictionEntry("Undersized Party", filter[DutyFinderSettingsFlags.UndersizedParty]);
-        filter[DutyFinderSettingsFlags.MinimumItemLevel] = DrawRestrictionEntry("Minimum Item Level", filter[DutyFinderSettingsFlags.MinimumItemLevel]);
+        filter[DutyFinderSettingsFlags.UnrestrictedParty] = DrawRestrictionEntry("Undersized Party", filter[DutyFinderSettingsFlags.UnrestrictedParty]);
+        filter[DutyFinderSettingsFlags.MinimumIL] = DrawRestrictionEntry("Minimum Item Level", filter[DutyFinderSettingsFlags.MinimumIL]);
         filter[DutyFinderSettingsFlags.SilenceEcho] = DrawRestrictionEntry("Silence Echo", filter[DutyFinderSettingsFlags.SilenceEcho]);
 
         DrawSeparator();
 
-        filter[LootRuleFlags.GreedOnly] = DrawRestrictionEntry("Greed Only", filter[LootRuleFlags.GreedOnly]);
-        filter[LootRuleFlags.Lootmaster] = DrawRestrictionEntry("Lootmaster", filter[LootRuleFlags.Lootmaster]);
+        filter[MirroredLootRuleFlags.GreedOnly] = DrawRestrictionEntry("Greed Only", filter[MirroredLootRuleFlags.GreedOnly]);
+        filter[MirroredLootRuleFlags.Lootmaster] = DrawRestrictionEntry("Lootmaster", filter[MirroredLootRuleFlags.Lootmaster]);
 
         DrawSeparator();
 
-        filter[SearchAreaFlags.DataCentre] = DrawRestrictionEntry("Data Centre Parties", filter[SearchAreaFlags.DataCentre]);
+        filter[SearchAreaFlags.DataCenter] = DrawRestrictionEntry("Data Centre Parties", filter[SearchAreaFlags.DataCenter]);
         filter[SearchAreaFlags.World] = DrawRestrictionEntry("World-Local Parties", filter[SearchAreaFlags.World]);
         filter[SearchAreaFlags.OnePlayerPerJob] = DrawRestrictionEntry("One Player Per Job", filter[SearchAreaFlags.OnePlayerPerJob]);
 

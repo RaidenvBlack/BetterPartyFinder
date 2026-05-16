@@ -91,7 +91,7 @@ public class Filter : IDisposable
             return false;
         }
 
-        if (!listing[filter.LootRule])
+        if (listing.LootRules != LootRuleFlags.Normal && !filter.LootRule.HasFlag((MirroredLootRuleFlags)(1 << (int)listing.LootRules)))
         {
             Plugin.Log.Verbose("early exit 6");
             return false;
@@ -108,7 +108,7 @@ public class Filter : IDisposable
             return false;
         }
 
-        if (!listing[filter.Objectives])
+        if (!filter.Objectives.HasFlag((MirroredObjectiveFlags)listing.Objective))
         {
             Plugin.Log.Verbose("early exit 9");
             return false;
